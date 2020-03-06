@@ -19,7 +19,7 @@ public class ProductoController {
         return productoService.findAll();
     }
 
-    @GetMapping("/listar/{id}")
+    @GetMapping("/ver/{id}")
     public Producto detalle(@PathVariable Long id) {
         return productoService.findById(id);
     }
