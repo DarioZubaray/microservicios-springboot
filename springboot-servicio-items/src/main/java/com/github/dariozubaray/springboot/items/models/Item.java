@@ -7,7 +7,7 @@ public class Item {
 
     public Item() { }
 
-    public Item(int cantidad, Producto producto) {
+    public Item(Producto producto, int cantidad) {
         this.cantidad = cantidad;
         this.producto = producto;
     }
