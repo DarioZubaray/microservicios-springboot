@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.github.dariozubaray.springboot.items.models.Item;
 import com.github.dariozubaray.springboot.items.models.service.ItemService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 public class ItemController {
@@ -21,8 +22,13 @@ public class ItemController {
         return itemService.listar();
     }
 
+    @HystrixCommand(fallbackMethod = "metodoAlternativo")
     @GetMapping("/ver/{id}/cantidad/{cantidad}")
     public Item detalle(@PathVariable Long id, @PathVariable Integer cantidad) {
         return itemService.detalle(id, cantidad);
+    }
+
+    public Item metodoAlternativo(Long id, Integer cantidad) {
+        return new Item();
     }
 }
