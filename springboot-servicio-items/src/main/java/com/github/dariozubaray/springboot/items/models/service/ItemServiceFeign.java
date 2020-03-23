@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.dariozubaray.springboot.items.models.Item;
-import com.github.dariozubaray.springboot.items.models.Producto;
+import com.github.dariozubaray.springboot.commons.models.entity.Producto;
 import com.github.dariozubaray.springboot.items.models.clientes.ProductoClienteRest;
 
 @Service("ItemServiceFeign")

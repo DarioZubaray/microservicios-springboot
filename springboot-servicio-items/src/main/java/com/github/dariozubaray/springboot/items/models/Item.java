@@ -1,5 +1,7 @@
 package com.github.dariozubaray.springboot.items.models;
 
+import com.github.dariozubaray.springboot.commons.models.entity.Producto;
+
 public class Item {
 
     private int cantidad;

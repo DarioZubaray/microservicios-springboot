@@ -2,7 +2,7 @@ package com.github.dariozubaray.springboot.items.models.service;
 
 import java.util.List;
 import com.github.dariozubaray.springboot.items.models.Item;
-import com.github.dariozubaray.springboot.items.models.Producto;
+import com.github.dariozubaray.springboot.commons.models.entity.Producto;
 
 public interface ItemService {
 

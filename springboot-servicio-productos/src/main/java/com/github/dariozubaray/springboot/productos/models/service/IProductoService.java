@@ -1,7 +1,7 @@
 package com.github.dariozubaray.springboot.productos.models.service;
 
 import java.util.List;
-import com.github.dariozubaray.springboot.productos.models.entity.Producto;
+import com.github.dariozubaray.springboot.commons.models.entity.Producto;
 
 public interface IProductoService {
 
