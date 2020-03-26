@@ -1,4 +1,4 @@
-package com.github.dariozubaray.springboot.usuarios.models.entity;
+package com.github.dariozubaray.springboot.usuarios.commons.models.entity;
 
 import java.io.Serializable;
 
