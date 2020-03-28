@@ -10,5 +10,5 @@ import com.github.dariozubaray.springboot.usuarios.commons.models.entity.Usuario
 public interface UsuarioFeignClient {
 
     @GetMapping("/usuarios/search/buscarUsuario")
-    public Usuario findByUseername(@RequestParam String username);
+    public Usuario findByUsername(@RequestParam(name = "username") String username);
 }
