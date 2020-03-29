@@ -18,7 +18,7 @@ import com.github.dariozubaray.springboot.oauth.clients.UsuarioFeignClient;
 import com.github.dariozubaray.springboot.usuarios.commons.models.entity.Usuario;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UsuarioService implements UserDetailsService, IUsuarioService {
 
     private Logger log = LoggerFactory.getLogger(UsuarioService.class);
 
@@ -49,6 +49,11 @@ public class UsuarioService implements UserDetailsService {
                 credentialsNonExpired, 
                 accountNonLocked, 
                 authorities);
+    }
+
+    @Override
+    public Usuario findByUsername(String username) {
+        return client.findByUsername(username);
     }
 
 }
