@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import com.github.dariozubaray.springboot.oauth.clients.UsuarioFeignClient;
 import com.github.dariozubaray.springboot.usuarios.commons.models.entity.Usuario;
 
+import feign.FeignException;
+
 @Service
 public class UsuarioService implements UserDetailsService, IUsuarioService {
 
@@ -27,28 +29,29 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = client.findByUsername(username);
-        if (usuario == null) {
+        try {
+            Usuario usuario = client.findByUsername(username);
+            log.info("Usuario autenticado: " + usuario.getUsername());
+            boolean accountNonExpired = true, credentialsNonExpired = true, accountNonLocked = true;
+            List<GrantedAuthority> authorities = usuario.getRoles()
+                                                        .stream()
+                                                        .map(role -> new SimpleGrantedAuthority(role.getNombre()))
+                                                        .peek(authority -> log.info("Role: " + authority.getAuthority()))
+                                                        .collect(Collectors.toList());
+
+            return new User(usuario.getUsername(),
+                    usuario.getPassword(), 
+                    usuario.getEnabled(), 
+                    accountNonExpired, 
+                    credentialsNonExpired, 
+                    accountNonLocked, 
+                    authorities);
+
+        } catch (FeignException e) {
             String msj = "Error en el login, no existe el usuario '"+username+"' en el sistema";
             log.error(msj);
             throw new UsernameNotFoundException(msj);
         }
-
-        log.info("Usuario autenticado: " + usuario.getUsername());
-        boolean accountNonExpired = true, credentialsNonExpired = true, accountNonLocked = true;
-        List<GrantedAuthority> authorities = usuario.getRoles()
-                                                    .stream()
-                                                    .map(role -> new SimpleGrantedAuthority(role.getNombre()))
-                                                    .peek(authority -> log.info("Role: " + authority.getAuthority()))
-                                                    .collect(Collectors.toList());
-
-        return new User(usuario.getUsername(), 
-                usuario.getPassword(), 
-                usuario.getEnabled(), 
-                accountNonExpired, 
-                credentialsNonExpired, 
-                accountNonLocked, 
-                authorities);
     }
 
     @Override
