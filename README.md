@@ -23,8 +23,8 @@
   - Zuul (Gateway)
 
 - [springboot-server-config](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-server-config)
- - Spring cloud config (git local)
- - Netflix eureka client
+  - Spring cloud config (git local)
+  - Netflix eureka client
 
 - [springboot-servicio-usuarios](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-server-config)
   - Netflix Eureka Client
@@ -33,7 +33,7 @@
   - Config client
 
 - [springboot-servicio-oauth](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-server-config)
- - Spring cloud Oauth2 (servidor de autorizacion)
- - Netflix Eureka Client
- - Config client
+  - Spring cloud Oauth2 (servidor de autorizacion)
+  - Netflix Eureka Client
+  - Config client
  
