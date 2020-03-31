@@ -4,6 +4,7 @@
 
 - [springboot-servicio-productos](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-servicio-productos)
   - Spring Boot DevTools
+  - Spring For RabbitMQ
   - Spring Data JPA
   - H2 Database
   - MySQLDriver
@@ -14,6 +15,7 @@
 
 - [springboot-servicio-items](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-servicio-items)
   - Spring Boot DevTools
+  - Spring For RabbitMQ
   - Spring Boot Actuator
   - Hystrix [Maintenance]
   - Config Client
@@ -27,8 +29,14 @@
   - Eureka Server
 
 - [springboot-servicio-zuul-server](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-servicio-zuul-server)
-  - Netflix Eureka Client
-  - Zuul (Gateway)
+  - Spring Boot DevTools
+  - Spring For RabbitMQ
+  - Config Client
+  - Eureka Discovery Client
+  - Zuul [Maintenance]
+  - Cloud OAuth2
+  - Zipkin Client
+  - Spring Web
 
 - [springboot-server-config](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-server-config)
   - Spring Boot DevTools
@@ -41,6 +49,7 @@
 
 - [springboot-servicio-usuarios](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-server-config)
   - Spring Boot DevTools
+  - Spring For RabbitMQ
   - Spring Data JPA
   - H2 Database
   - PostgreSQL Driver
@@ -52,6 +61,7 @@
 
 - [springboot-servicio-oauth](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-server-config)
   - Spring Boot DevTools
+  - Spring For RabbitMQ
   - Config Client
   - Eureka Discovery Client
   - OpenFeign
