@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.github.dariozubaray.springboot.oauth.clients.UsuarioFeignClient;
 import com.github.dariozubaray.springboot.usuarios.commons.models.entity.Usuario;
 
+import brave.Tracer;
 import feign.FeignException;
 
 @Service
@@ -26,6 +27,9 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 
     @Autowired
     private UsuarioFeignClient client;
+
+    @Autowired
+    private Tracer tracer;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -50,6 +54,7 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
         } catch (FeignException e) {
             String msj = "Error en el login, no existe el usuario '"+username+"' en el sistema";
             log.error(msj);
+            tracer.currentSpan().tag("errorMensaje", msj + ": " + e.getMessage());
             throw new UsernameNotFoundException(msj);
         }
     }

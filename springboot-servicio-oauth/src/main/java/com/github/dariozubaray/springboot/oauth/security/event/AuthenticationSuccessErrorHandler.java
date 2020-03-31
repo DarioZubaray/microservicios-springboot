@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.github.dariozubaray.springboot.oauth.services.IUsuarioService;
 import com.github.dariozubaray.springboot.usuarios.commons.models.entity.Usuario;
 
+import brave.Tracer;
 import feign.FeignException;
 
 @Component
@@ -21,6 +22,9 @@ public class AuthenticationSuccessErrorHandler implements AuthenticationEventPub
 
     @Autowired
     private IUsuarioService usuarioService;
+
+    @Autowired
+    private Tracer tracer;
 
     @Override
     public void publishAuthenticationSuccess(Authentication authentication) {
@@ -36,10 +40,14 @@ public class AuthenticationSuccessErrorHandler implements AuthenticationEventPub
 
     @Override
     public void publishAuthenticationFailure(AuthenticationException exception, Authentication authentication) {
-        log.error("Error en el login: {}", exception.getMessage());
+        String errorLogin = "Error en el login: " + exception.getMessage();
+        log.error(errorLogin);
         log.error("Usuario no valido: {}", authentication.getName());
 
         try {
+            StringBuilder errors = new StringBuilder();
+            errors.append(errorLogin);
+
             Usuario usuario = usuarioService.findByUsername(authentication.getName());
             if (usuario.getIntentos() == null) {
                 usuario.setIntentos(0);
@@ -49,11 +57,14 @@ public class AuthenticationSuccessErrorHandler implements AuthenticationEventPub
             log.info("Intentos después es de {}", usuario.getIntentos());
 
             if (usuario.getIntentos() >= 3) {
-                log.error("El usuario {} deshabilitado por alcanzar los maximos intentos", usuario.getUsername());
+                String intentosMaximos = String.format("El usuario %s deshabilitado por alcanzar los maximos intentos", usuario.getUsername());
+                log.error(intentosMaximos);
+                errors.append(" - " + intentosMaximos);
                 usuario.setEnabled(false);
             }
 
             usuarioService.update(usuario, usuario.getId());
+            tracer.currentSpan().tag("error.mensaje", errors.toString());
         } catch (FeignException e) {
             log.error("El usuario {} no existe en el sistema", authentication.getName());
         }

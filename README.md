@@ -9,7 +9,7 @@
   - MySQLDriver
   - Config Client
   - Eureka Discovery Client
-  - Sleuth
+  - Zipkin Client
   - Spring Web
 
 - [springboot-servicio-items](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-servicio-items)
@@ -19,7 +19,7 @@
   - Config Client
   - Eureka Dicovery Client
   - OpenFeign
-  - Sleuth
+  - Zipkin Client
   - Spring Web
 
 - [springboot-servicio-eureka-server](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-servicio-eureka-server)
@@ -36,7 +36,7 @@
   - Eureka Discovery Client
   - Zuul [Maintenance]
   - Cloud OAuth2
-  - Sleuth
+  - Zipkin Client
   - Spring Web
 
 - [springboot-servicio-usuarios](https://github.com/DarioZubaray/microservicios-springboot/tree/master/springboot-server-config)
@@ -46,7 +46,7 @@
   - PostgreSQL Driver
   - Config Client
   - Eureka Discovery Client
-  - Sleuth
+  - Zipkin Client
   - Spring Web
   - Rest Repository
 
@@ -56,6 +56,6 @@
   - Eureka Discovery Client
   - OpenFeign
   - Cloud OAuth2
-  - Sleuth
+  - Zipkin Client
   - Spring Web
  
